@@ -19,10 +19,13 @@ class mean_shift_algo_wrapper:
     def predict(self,data):
         return self.wrapped.fit_predict(data)
 
+model = mean_shift_algo_wrapper()
 
 def do(input_data, draw_plot = False) -> common.AlgoInfo:
-    model = mean_shift_algo_wrapper()
     model.fit(input_data)
     if draw_plot:
         common.draw(model.data, model.indexes)
     return common.AlgoInfo("Mean Shift", model.indexes)
+
+def predict(el) -> []:
+    return model.predict(el)

@@ -24,8 +24,7 @@ INPUT_DATA = np.array([[1, 2],
                        [9, 11]])
 
 algo_list = [af.do, birch.do, mean_shift.do, optics.do, ag.do, af.do, dbscan.do, k_mean.do]
-algo_results_list = 0  # unnececaryly
-
+algo_predict_list = [af.predict, birch.predict, mean_shift.predict, optics.predict, ag.predict, af.predict, dbscan.predict, k_mean.predict]
 
 def analyze(data, draw_results) -> []:
     report = []
@@ -48,4 +47,20 @@ def generate_test_data(clusters_num, points_in_cluster) -> []:
             data.append([(x - x0) ** 2, (y - y0) ** 2])
     return np.array(data[1:])
 
+def compare_set_with_ideal_element(el, set, diff) -> []:
+    rate = []
+    el = set[0]
+    for i in range(len(algo_predict_list)):
+        rate.append(0)
 
+    dividor = 0
+
+    for i in range(len(algo_predict_list)):
+        compare_id = algo_predict_list[i](el)
+        dividor = len(set)
+        for j in range(len(set)):
+            if diff[j] == (compare_id == algo_predict_list[i](set[j])):
+                rate[i] = rate[i] + 1
+        rate[i] = rate[i] = dividor
+
+    return rate

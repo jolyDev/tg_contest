@@ -17,10 +17,14 @@ class DBSCAN_algo_wrapper:
     def predict(self,data):
         return self.wrapped.fit_predict(data)
 
+model = DBSCAN_algo_wrapper()
 
 def do(input_data, draw_plot = False) -> common.AlgoInfo:
-    model = DBSCAN_algo_wrapper()
     model.fit(input_data)
     if draw_plot:
         common.draw(model.data, model.indexes)
-    return common.AlgoInfo("DBSCAN", model.indexes);
+    return common.AlgoInfo("DBSCAN", model.indexes)
+
+
+def predict(el) -> []:
+    return model.predict(el)

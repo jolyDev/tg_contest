@@ -17,10 +17,14 @@ class K_Means_wrapper:
     def predict(self,data):
         return self.wrapped.predict(data)
 
+model = K_Means_wrapper()
 
 def do(input_data, draw_plot = False) -> common.AlgoInfo:
-    model = K_Means_wrapper()
     model.fit(input_data)
     if draw_plot:
         common.draw(model.data, model.indexes)
-    return common.AlgoInfo("K_mean", model.indexes);
+    return common.AlgoInfo("K_mean", model.indexes)
+
+
+def predict(el) -> []:
+    return model.predict(el)
