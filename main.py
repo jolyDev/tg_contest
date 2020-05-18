@@ -9,11 +9,10 @@ report = algo.analyze(data = training_data, draw_results = False)
 
 
 # on this data we will check if algorithm puts items in correspond clusters
-basis_el = common.basic_test_n_1_ideal
 compare_results = common.basic_test_n_1_diff
-succes_rate = algo.compare_set_with_ideal_element(basis_el, training_data, compare_results)
+succes_rate = algo.compare_set_with_ideal_element( training_data, compare_results)
 
-for i in len(succes_rate):
+for i in range(len(succes_rate)):
     report[i].rate = succes_rate[i]
 
 common.sortByTime(report)

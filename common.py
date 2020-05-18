@@ -6,7 +6,7 @@
 import matplotlib.pyplot as plot
 import numpy as np
 
-colors = ('#FF0000', '#00FF00', '#0000FF', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf')
+colors = ('#FF0000', '#00FF00', '#0000FF', '#888888', '#4488FF', '#FF8844', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf')
 
 class AlgoInfo:
     def __init__(self, algoname, clusters):
@@ -22,19 +22,19 @@ class AlgoInfo:
         else:
             return self.rate > other.rate
 
-def sortByTime(self, data):
+def sortByTime(data):
     for el in data:
         el.toggle = True
     data.sort()
 
-def sortByRate(self, data):
+def sortByRate(data):
     for el in data:
         el.toggle = False
     data.sort()
 
 def printAlgosInfo(list):
     for item in list:
-        print("{} | acuracy: {} | [t: {} sec]".format(item.name, item.rate, item.time_taken))
+        print(" {:25s} | acuracy: {:3f} | [t: {:6f} sec] | ".format( item.name, item.rate, item.time_taken))
 
 def draw(data, cluster_group):
     for i in range(len(data)):
@@ -51,6 +51,4 @@ basic_test_n_1_two_claster_array_of_2d_points = [
     [2, 4],
     [4, 2],
     [2, 2],]
-tmp = [[5,5, 5,5]]
-basic_test_n_1_ideal = np.array(tmp[0:])
 basic_test_n_1_diff = [True,True,True,True,True,False,False,False,False]

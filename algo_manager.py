@@ -16,13 +16,6 @@ import common
 import numpy as np
 from timeit import default_timer as timer
 
-INPUT_DATA = np.array([[1, 2],
-                       [1.5, 1.8],
-                       [5, 8],
-                       [8, 8],
-                       [1, 0.6],
-                       [9, 11]])
-
 algo_list = [af.do, birch.do, mean_shift.do, optics.do, ag.do, af.do, dbscan.do, k_mean.do]
 algo_predict_list = [af.predict, birch.predict, mean_shift.predict, optics.predict, ag.predict, af.predict, dbscan.predict, k_mean.predict]
 
@@ -47,20 +40,18 @@ def generate_test_data(clusters_num, points_in_cluster) -> []:
             data.append([(x - x0) ** 2, (y - y0) ** 2])
     return np.array(data[1:])
 
-def compare_set_with_ideal_element(el, set, diff) -> []:
+def compare_set_with_ideal_element(set, diff) -> []:
     rate = []
-    el = set[0]
     for i in range(len(algo_predict_list)):
         rate.append(0)
 
-    dividor = 0
+    dividor = len(set)
 
     for i in range(len(algo_predict_list)):
-        compare_id = algo_predict_list[i](el)
-        dividor = len(set)
+        clusters_result = algo_predict_list[i](set)
         for j in range(len(set)):
-            if diff[j] == (compare_id == algo_predict_list[i](set[j])):
+            if diff[j] == (clusters_result[0] == clusters_result[j]):
                 rate[i] = rate[i] + 1
-        rate[i] = rate[i] = dividor
+        rate[i] = rate[i] / dividor
 
     return rate
